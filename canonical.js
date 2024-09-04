@@ -168,33 +168,35 @@ function saveResultsToCSV(results, baseDomain, totalUrls, totalOK, totalFail) {
     console.log(`Results saved to: ${csvFilePath}`);
 }
 
-// Main function to run the audit
+// Main function to run the audit for multiple sitemaps
 (async function runAudit() {
     // Load config
     const config = loadConfig();
-    const sitemapUrl = config.sitemapUrl;
+    const sitemapUrls = config.sitemapUrls;
 
-    const baseDomain = getBaseDomain(sitemapUrl);
+    for (const sitemapUrl of sitemapUrls) {
+        const baseDomain = getBaseDomain(sitemapUrl);
 
-    console.log(`Starting canonical audit for: ${baseDomain}`);
-    const urls = await fetchSitemapUrls(sitemapUrl);
+        console.log(`Starting canonical audit for: ${baseDomain}`);
+        const urls = await fetchSitemapUrls(sitemapUrl);
 
-    let totalOK = 0;
-    let totalFail = 0;
-    const results = [];
+        let totalOK = 0;
+        let totalFail = 0;
+        const results = [];
 
-    for (const url of urls) {
-        const result = await runCanonicalChecks(url);
-        if (result.status === 'OK') {
-            totalOK += 1;
-        } else {
-            totalFail += 1;
+        for (const url of urls) {
+            const result = await runCanonicalChecks(url);
+            if (result.status === 'OK') {
+                totalOK += 1;
+            } else {
+                totalFail += 1;
+            }
+            results.push(result);
         }
-        results.push(result);
+
+        const totalUrls = urls.length;
+        saveResultsToCSV(results, baseDomain, totalUrls, totalOK, totalFail);
+
+        console.log(`Audit completed for ${baseDomain}: ${totalOK} OK, ${totalFail} Fail`);
     }
-
-    const totalUrls = urls.length;
-    saveResultsToCSV(results, baseDomain, totalUrls, totalOK, totalFail);
-
-    console.log(`Audit completed: ${totalOK} OK, ${totalFail} Fail`);
 })();

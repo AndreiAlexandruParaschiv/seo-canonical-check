@@ -1,3 +1,5 @@
 {
-  "sitemapUrl": "https://www.mescomputing.com/sitemap.xml"
+  "sitemapUrls": [
+    "https://testingsitemap.xml"
+  ]
 }

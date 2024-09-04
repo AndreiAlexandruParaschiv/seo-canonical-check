@@ -1,0 +1,20 @@
+{
+  "name": "seo-canonical-check",
+  "version": "1.0.0",
+  "description": "",
+  "main": "canonical.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndreiAlexandruParaschiv/seo-canonical-check.git"
+  },
+  "private": true,
+  "dependencies": {
+    "jsdom": "^25.0.0",
+    "node-fetch": "^3.3.2",
+    "xml2js": "^0.6.2"
+  }
+}

@@ -36,7 +36,7 @@ This means that URLs like `https://example.com/page/` and `https://example.com/p
 
 ## Requirements
 
-- Node.js (v14 or higher)
+- Node.js (v22 or higher)
 - npm or yarn
 
 ## Installation
@@ -124,25 +124,3 @@ Total URLs Checked: 67
 Total OK: 50
 Total FAIL (Canonical Issues): 17
 ```
-
-## Common Issues and Solutions
-
-### Missing Canonical Tags
-
-Add a canonical tag in the `<head>` section of your HTML:
-
-```html
-<link rel="canonical" href="https://example.com/page" />
-```
-
-### Multiple Canonical Tags
-
-Remove duplicate canonical tags, keeping only one per page.
-
-### Canonical URL Using Different Domain
-
-Ensure the canonical URL points to the same domain as the page URL.
-
-## License
-
-MIT
